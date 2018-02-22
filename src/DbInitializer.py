@@ -15,26 +15,22 @@ class DbInitializer(metaclass=ABCMeta):
 
     #@abstractmethod
     def CreateDb(self):
-        dbname = self.__class__.__name__.replace(super().__thisclass__.__name__, '')
-        print(dbname)
-        self.__class__.dbname = dbname
-        self.CreateDbFileName()
+        print(self.DbId)
+        print(self.DbFileName)
     #@abstractmethod
     def CreateTable(self):
         self.__GetCreateTableSqlFilePaths()
     #@abstractmethod
     def InsertInitData(self): pass
 
-    def CreateDbFileName(self):
-        return 'GitHub.' + self.__class__.dbname + '.sqlite3'
     @property
-    def DbFileName(self):
-        return 'GitHub.' + self.__class__.dbname + '.sqlite3'
+    def DbId(self): return self.__class__.__name__.replace(super().__thisclass__.__name__, '')
+    @property
+    def DbFileName(self): return 'GitHub.' + self.DbId + '.sqlite3'
 
     # パス取得（テーブル作成用SQLファイル）
     def __GetCreateTableSqlFilePaths(self):
-        path = os.path.join(self.__path_dir_this, self.__class__.dbname, 'sql', 'create')
-#        path = os.path.join(self.__path_dir_this, self.__class__.dbname, 'sql', 'create')
+        path = os.path.join(self.__path_dir_this, self.DbId, 'initialize', 'sql', 'create')
 #        for path_sql in glob.glob(os.path.join(path + '*.sql')): yield path_sql
         print(path)
 

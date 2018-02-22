@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import DbInitializer
 class GnuLicensesDbInitializer(DbInitializer.DbInitializer):
-    def CreateDbFileName(self): return 'Gnu.Licenses.sqlite3'
     @property
     def DbFileName(self): return 'Gnu.Licenses.sqlite3'
 
