@@ -27,6 +27,9 @@ class DbInitializer(metaclass=ABCMeta):
 
     def CreateDbFileName(self):
         return 'GitHub.' + self.__class__.dbname + '.sqlite3'
+    @property
+    def DbFileName(self):
+        return 'GitHub.' + self.__class__.dbname + '.sqlite3'
 
     # パス取得（テーブル作成用SQLファイル）
     def __GetCreateTableSqlFilePaths(self):
